@@ -33,7 +33,7 @@ jobs:
         with:
             path: ~/cached-apama-installation.tar
             # To use a clean cache, add extra chars to this key
-            key: apama-${{ runner.os }}-10.5.3.2-TODO
+            key: apama-${{ runner.os }}-10.5.3.2-TODO2
 
       - uses: ./
         with:

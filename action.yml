@@ -12,7 +12,6 @@ runs:
         shell: bash
         run: |
           APAMA_CACHE_TAR=~/cached-apama-installation.tar
-          echo Cache location: $APAMA_CACHE_TAR
 
           if [[ ${{runner.os}} = Windows ]]; then
             _SAG_INSTALL_PATH=c:\\SoftwareAG
@@ -22,8 +21,8 @@ runs:
             DOWNLOAD_PLATFORM=amd64_linux
           fi
           
-          if [[ "${{ steps.cache-apama-installer.outputs.cache-hit }}" = "true" ]]; then
-            echo Unpacking Apama installation from cache
+          if [[ -f $APAMA_CACHE_TAR ]]; then
+            echo Unpacking Apama installation from cache at $APAMA_CACHE_TAR
             
             mkdir $_SAG_INSTALL_PATH
             cd $_SAG_INSTALL_PATH
@@ -32,13 +31,13 @@ runs:
             # Check it unpacked correctly
             ls $_SAG_INSTALL_PATH/Apama > /dev/null
           else
+            echo No installation found in cache $APAMA_CACHE_TAR
             # Cache miss - need to install it
             mkdir ../apama-installer
             cd ../apama-installer
             DOWNLOAD_URL=https://downloads.apamacommunity.com/apama/${{ inputs.apama-version }}/apama_${{ inputs.apama-version }}_$DOWNLOAD_PLATFORM.zip
             echo Downloading from $DOWNLOAD_URL
             curl --retry 2 --output apama-installer.zip $DOWNLOAD_URL
-            ls -l
 
             unzip -q apama-installer.zip
             mv apama_*/* ./
@@ -70,7 +69,8 @@ runs:
 
           cd ~
 
-          # Until Apama 10.7 we need to explicitly enable it (and disable colorama on windows which would replace the escape codes)
+          # Until Apama 10.7 we need to explicitly enable color from GitHub Actions 
+          # (and disable colorama on windows which would replace the escape codes)
           echo PYSYS_COLOR=true >> $GITHUB_ENV
           echo PYSYS_DISABLE_COLORAMA=true >> $GITHUB_ENV
           
@@ -93,9 +93,12 @@ runs:
           fi
 
       - name: Setup Apama environment on Windows
-        #if: runner.os == 'Windows'
-        shell: cmd
+        shell: python
         run: |
-          call %APAMA_HOME%\bin\apama_env.bat
-          set > apama.env
-          type apama.env >> %GITHUB_ENV%
+          # Ideally we'd just run this in a cmd shell, but can't since it wouldn't work on Linux and GH composite 
+          # actions don't yet support "if"
+          # Can't do this as part of the bash shell above, as Windows Git Bash pollutes the environment
+          import os
+          if os.name=='nt':
+            os.system('cmd /c "%APAMA_HOME%\bin\apama_env.bat && set >> %GITHUB_ENV%"')
+          
