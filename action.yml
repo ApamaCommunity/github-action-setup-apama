@@ -32,6 +32,7 @@ runs:
             which tar
             tar -xf $APAMA_CACHE_TAR
             echo 4
+            ls
 
             # Check it unpacked correctly
             ls $_SAG_INSTALL_PATH/Apama > /dev/null
@@ -105,5 +106,8 @@ runs:
           # Can't do this as part of the bash shell above, as Windows Git Bash pollutes the environment
           import os
           if os.name=='nt':
-            os.system('cmd /c "%APAMA_HOME%\bin\apama_env.bat && set >> %GITHUB_ENV%"')
+            print('Adding apama_env.bat environment to GITHUB_ENV; parent process PATH=%s' % os.environ['PATH'])
+            cmd = 'cmd /c "%APAMA_HOME%\bin\apama_env.bat && set >> %GITHUB_ENV%"'
+            print('Executing: %s' % cmd)
+            os.system(cmd)
           

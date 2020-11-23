@@ -50,7 +50,7 @@ jobs:
           $APAMA_PYSYS makeproject --help
           
           which javac
-          javac --version
+          javac -version
           
           which python
           python --version
