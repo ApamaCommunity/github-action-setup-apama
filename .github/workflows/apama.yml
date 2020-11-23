@@ -58,12 +58,19 @@ jobs:
           # The 4-digit version to download from http://www.apamacommunity.com/downloads/
           apama-version: ${{ matrix.apama-version }}
 
-      - name: Test the Apama installation
+      - name: Test starting the Apama correlator
+        # Basic test that should work on all Apama versions
         shell: bash
         run: |
           env | sort
 
           correlator --version
+
+      - name: Test the rest of the Apama environment
+        shell: bash
+        # Some tools aren't in the oldest version
+        if: matrix.apama-version != '9.10.0.3'
+        run: |
           engine_deploy -h
           
           $APAMA_PYSYS makeproject --help
