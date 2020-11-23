@@ -24,9 +24,14 @@ runs:
           if [[ -f $APAMA_CACHE_TAR ]]; then
             echo Unpacking Apama installation from cache at $APAMA_CACHE_TAR
             
+            echo 1 $_SAG_INSTALL_PATH
             mkdir $_SAG_INSTALL_PATH
+            echo 2
             cd $_SAG_INSTALL_PATH
+            echo 3
+            which tar
             tar -xf $APAMA_CACHE_TAR
+            echo 4
 
             # Check it unpacked correctly
             ls $_SAG_INSTALL_PATH/Apama > /dev/null
