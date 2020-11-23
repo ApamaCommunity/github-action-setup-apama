@@ -16,10 +16,10 @@ runs:
 
           if [[ ${{runner.os}} = Windows ]]; then
             _SAG_INSTALL_PATH=c:\\SoftwareAG
-						DOWNLOAD_PLATFORM=amd64-win
+            DOWNLOAD_PLATFORM=amd64-win
           else
             _SAG_INSTALL_PATH=/opt/softwareag
-						DOWNLOAD_PLATFORM=amd64-linux
+            DOWNLOAD_PLATFORM=amd64-linux
           fi
           
           if [[ "${{ steps.cache-apama-installer.outputs.cache-hit }}" = "true" ]]; then
@@ -33,7 +33,7 @@ runs:
             ls $_SAG_INSTALL_PATH/Apama > /dev/null
           else
             # Cache miss - need to install it
-						mkdir ../apama-installer
+            mkdir ../apama-installer
             cd ../apama-installer
             curl --retry 2 -o apama-installer.zip "https://downloads.apamacommunity.com/apama/${{ inputs.apama-version }}./apama_${{ inputs.apama-version }}_$DOWNLOAD_PLATFORM.zip"
 
