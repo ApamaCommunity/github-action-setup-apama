@@ -38,3 +38,23 @@ jobs:
       - uses: ./
         with:
           apama-version: 10.5.3.2
+
+      - name: Test the installation
+        shell: bash
+        run: |
+          correlator --version
+          engine_deploy -h
+          
+          $APAMA_PYSYS run --help
+          
+          which javac
+          javac --version
+          
+          which python
+          python --version
+          
+          which ant
+          ant --version
+          
+          env | sort
+        
