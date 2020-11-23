@@ -35,7 +35,10 @@ runs:
             # Cache miss - need to install it
             mkdir ../apama-installer
             cd ../apama-installer
-            curl --retry 2 -o apama-installer.zip "https://downloads.apamacommunity.com/apama/${{ inputs.apama-version }}./apama_${{ inputs.apama-version }}_$DOWNLOAD_PLATFORM.zip"
+            DOWNLOAD_URL=https://downloads.apamacommunity.com/apama/${{ inputs.apama-version }}./apama_${{ inputs.apama-version }}_$DOWNLOAD_PLATFORM.zip
+            echo Downloading from $DOWNLOAD_URL
+            curl --retry 2 --output apama-installer.zip $DOWNLOAD_URL
+            ls -l
 
             unzip -q apama-installer.zip
             mv apama_*/* ./
