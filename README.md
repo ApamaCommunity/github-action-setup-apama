@@ -1,4 +1,4 @@
-# github-action-setup-apama
+# setup-apama GitHub Action
 This GitHub action installs Apama Community Edition on either Windows or Linux. 
 
 The environment variables are configured as if the `apama_env` script had been run/sourced. 

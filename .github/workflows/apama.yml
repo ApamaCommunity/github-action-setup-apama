@@ -56,5 +56,5 @@ jobs:
           python --version
           
           which ant
-          ant --version
+          ant -version
           

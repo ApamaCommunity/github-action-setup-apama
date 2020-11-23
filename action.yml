@@ -101,13 +101,13 @@ runs:
       - name: Setup Apama environment on Windows
         shell: python
         run: |
-          # Ideally we'd just run this in a cmd shell, but can't since it wouldn't work on Linux and GH composite 
-          # actions don't yet support "if"
-          # Can't do this as part of the bash shell above, as Windows Git Bash pollutes the environment
+          # Ideally we'd just run this in a cmd shell, but can't since it wouldn't work on Linux, and GH composite 
+          # action steps don't yet support "if".
+          # Can't do this as part of the bash shell above, as Windows Git Bash pollutes the PATH environment.
           import os
           if os.name=='nt':
-            print('Adding apama_env.bat environment to GITHUB_ENV; parent process PATH=%s' % os.environ['PATH'])
-            cmd = 'cmd /c "%APAMA_HOME%\bin\apama_env.bat && set >> %GITHUB_ENV%"'
+            print('Adding apama_env.bat environment to GITHUB_ENV')
+            cmd = r'cmd /c "%APAMA_HOME%\bin\apama_env.bat && set >> %GITHUB_ENV%"'
             print('Executing: %s' % cmd)
             os.system(cmd)
           
