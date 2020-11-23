@@ -1,0 +1,27 @@
+name: Setup Apama
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        include:
+          - run-id: amd64_linux
+            os: ubuntu-latest
+            
+          - run-id: amd64_win
+            os: windows-latest
+            
+    runs-on: ${{matrix.os}}
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ./
+        with:
+          apama-version: 10.5.3.2
