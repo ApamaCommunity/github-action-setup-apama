@@ -19,7 +19,11 @@ jobs:
             
           - run-id: amd64_win
             os: windows-latest
-            
+
+    env:
+      # The 4-digit version to download from http://www.apamacommunity.com/downloads/
+      SETUP_APAMA_VERSION: 10.5.3.2
+
     runs-on: ${{matrix.os}}
     
     steps:
@@ -32,12 +36,12 @@ jobs:
         id: cache-apama-installer
         with:
             path: ~/cached-apama-installation.tar
-            # To use a clean cache, add extra chars to this key
-            key: apama-${{ runner.os }}-10.5.3.2-TODO2
+            # To use a clean cache, update the number at the end of this key
+            key: apama-${{ runner.os }}-${{ env.SETUP_APAMA_VERSION }}-cache1
 
       - uses: ./
         with:
-          apama-version: 10.5.3.2
+          apama-version: ${{ env.SETUP_APAMA_VERSION }}
 
       - name: Test the Apama installation
         shell: bash
