@@ -8,7 +8,10 @@ on:
 
 jobs:
   test:
-    strategy:
+    strategy:    
+      # Disable fail fast since it's useful to see test results for all platforms even if some failed
+      fail-fast: false
+
       matrix:
         include:
           - run-id: amd64_linux

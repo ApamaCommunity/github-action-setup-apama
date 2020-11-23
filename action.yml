@@ -16,10 +16,10 @@ runs:
 
           if [[ ${{runner.os}} = Windows ]]; then
             _SAG_INSTALL_PATH=c:\\SoftwareAG
-            DOWNLOAD_PLATFORM=amd64-win
+            DOWNLOAD_PLATFORM=amd64_win
           else
             _SAG_INSTALL_PATH=/opt/softwareag
-            DOWNLOAD_PLATFORM=amd64-linux
+            DOWNLOAD_PLATFORM=amd64_linux
           fi
           
           if [[ "${{ steps.cache-apama-installer.outputs.cache-hit }}" = "true" ]]; then
