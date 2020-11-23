@@ -16,13 +16,27 @@ jobs:
         include:
           - run-id: amd64_linux
             os: ubuntu-latest
+            apama-version: 10.5.3.2
             
           - run-id: amd64_win
             os: windows-latest
+            apama-version: 10.5.3.2
 
-    env:
-      # The 4-digit version to download from http://www.apamacommunity.com/downloads/
-      SETUP_APAMA_VERSION: 10.5.3.2
+          - run-id: amd64_linux
+            os: ubuntu-latest
+            apama-version: 10.1.0.5
+            
+          - run-id: amd64_win
+            os: windows-latest
+            apama-version: 10.1.0.5
+
+          - run-id: amd64_linux_oldest
+            os: ubuntu-latest
+            apama-version: 9.10.0.3
+            
+          - run-id: amd64_win_oldest
+            os: windows-latest
+            apama-version: 9.10.0.3
 
     runs-on: ${{matrix.os}}
     
@@ -37,11 +51,12 @@ jobs:
         with:
             path: ~/cached-apama-installation.tar
             # To use a clean cache, update the number at the end of this key
-            key: apama-${{ runner.os }}-${{ env.SETUP_APAMA_VERSION }}-cache1
+            key: apama-${{ runner.os }}-${{ matrix.apama-version }}-cache1
 
       - uses: ./
         with:
-          apama-version: ${{ env.SETUP_APAMA_VERSION }}
+          # The 4-digit version to download from http://www.apamacommunity.com/downloads/
+          apama-version: ${{ matrix.apama-version }}
 
       - name: Test the Apama installation
         shell: bash

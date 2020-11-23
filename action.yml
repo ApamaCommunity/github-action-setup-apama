@@ -7,6 +7,7 @@
 
 name: 'Setup Apama'
 description: 'Install Software AG Apama Community Edition and add it to your GitHub Actions environment'
+author: Software AG
 inputs:
   apama-version:
     description: 'The 4 digit version to install from https://downloads.apamacommunity.com/apama, e.g. 10.5.3.2'
