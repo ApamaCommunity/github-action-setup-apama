@@ -30,7 +30,7 @@ the job executes. To do this, add the following after your checkout action and b
             path: ~/cached-apama-installation.tar
             key: apama-${{ runner.os }}-${{ env.SETUP_APAMA_VERSION }}
 
-      - uses: setup-apama@v1
+      - uses: ApamaCommunity/setup-apama@v1.0.2
         with:
           apama-version: ${{ env.SETUP_APAMA_VERSION }}
 
@@ -43,14 +43,16 @@ the job executes. To do this, add the following after your checkout action and b
 Note that the Linux environment usually executes quite a lot faster than the Windows one, so if you don't need 
 multi-platform testing, use a workflow that runs only on Linux for maximum efficiency. 
 
-See https://github.com/ApamaCommunity for a complete sample workflow using this action. 
+See https://github.com/ApamaCommunity/.github for a complete sample workflow using this action. 
 
 # License
 
-Copyright (C) 2020 Software AG, Darmstadt, Germany and/or its licensors
+Installing Apama Community Edition using this action implies agreement to the 
+terms and conditions; see http://www.apamacommunity.com/terms-conditions/
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
-  
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+The setup-action is:
 
-In addition to the above license covering this action itself, use of this action implies that you have also agreed to the terms for using Apama Community Edition which you can read at http://www.apamacommunity.com/terms-conditions/
+	Copyright (C) 2020 Software AG, Darmstadt, Germany and/or its licensors
+
+	Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+	Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
