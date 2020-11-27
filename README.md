@@ -50,7 +50,7 @@ See https://github.com/ApamaCommunity/.github for a complete sample workflow usi
 Installing Apama Community Edition using this action implies agreement to the 
 terms and conditions; see http://www.apamacommunity.com/terms-conditions/
 
-The setup-action is:
+The setup-apama action is:
 
 	Copyright (C) 2020 Software AG, Darmstadt, Germany and/or its licensors
 
