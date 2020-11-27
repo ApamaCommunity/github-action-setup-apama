@@ -4,18 +4,18 @@ This GitHub action installs Apama Community Edition on either Windows or Linux.
 The environment variables for the workflow are configured as if the `apama_env` script had been run/sourced. 
 This means that subsequent steps can use Apama executables such as `engine_deploy` and `apamadoc`. 
 
-If you wish to test on both Windows and Linux, you can use a Bash shell or PowerShell to execute Apama tools on both 
-operating systems. Since the executable for running PySys tests has different extensions on Windows/Linux, this action 
-sets an additional `APAMA_PYSYS` environment variable containing the script name so you can run it with 
-`$APAMA_PYSYS run <args>` in your shell script. 
+If you wish to test on both Windows and Linux, you can use the same shell (typically Bash or PowerShell) to execute 
+Apama tools on both operating systems. Since the executable for running PySys tests has different extensions on 
+Windows/Linux, this action sets an additional `APAMA_PYSYS` environment variable containing the PySys script's name so 
+you can run PySys with `$APAMA_PYSYS run <args>` in your shell script. 
 
-The action has only one input parameter, `apama-version`, which must be set to a valid 4-digit Apama version. 
+The action has only one input parameter, `apama-version`, which must be set to a valid 4-digit Apama version 
+from http://www.apamacommunity.com/downloads/.
 
 It is recommended to use this action with a cache to avoid downloading and running the Apama installer every time 
 the job executes. To do this, add the following after your checkout action and before setup-apama:
 
     env:
-      # The 4-digit version to download from http://www.apamacommunity.com/downloads/
       SETUP_APAMA_VERSION: 10.5.3.2
 
     steps:

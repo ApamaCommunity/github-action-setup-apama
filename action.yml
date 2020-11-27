@@ -3,7 +3,7 @@
 #		http://www.apache.org/licenses/LICENSE-2.0
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 #
-# Use of this action implies that you have also agreed to the terms for using Apama Community Edition which you can read at http://www.apamacommunity.com/terms-conditions/
+# Use of this action implies agreement to the terms for using Apama Community Edition - http://www.apamacommunity.com/terms-conditions/
 
 name: 'Setup Apama'
 description: 'Install Software AG Apama Community Edition and add it to your GitHub Actions environment'
@@ -19,6 +19,10 @@ runs:
       - name: Install Apama Community Edition
         shell: bash
         run: |
+          echo Use of this action implies agreement to the terms for using Apama Community Edition
+          echo See: http://www.apamacommunity.com/terms-conditions/
+          echo
+          
           APAMA_CACHE_TAR=~/cached-apama-installation.tar
 
           if [[ ${{runner.os}} = Windows ]]; then
