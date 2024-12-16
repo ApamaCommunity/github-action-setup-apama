@@ -1,3 +1,5 @@
+WARNING: This repo was implemented for an earlier version of Apama and needs some updates to work with recent releases of Apama. If you find this action useful, feel free to submit a PR!
+
 # GitHub Action setup-apama
 This GitHub action installs Apama Community Edition on either Windows or Linux. 
 
@@ -10,7 +12,7 @@ Windows/Linux, this action sets an additional `APAMA_PYSYS` environment variable
 you can run PySys with `$APAMA_PYSYS run <args>` in your shell script. 
 
 The action has only one input parameter, `apama-version`, which must be set to a valid 4-digit Apama version 
-from http://www.apamacommunity.com/downloads/.
+from https://download.cumulocity.com/Apama/.
 
 It is recommended to use this action with a cache to avoid downloading and running the Apama installer every time 
 the job executes. To do this, add the following after your checkout action and before setup-apama:
@@ -48,11 +50,11 @@ See https://github.com/ApamaCommunity/.github for a complete sample workflow usi
 # License
 
 Installing Apama Community Edition using this action implies agreement to the 
-terms and conditions; see http://www.apamacommunity.com/terms-conditions/
+terms and conditions; see https://cumulocity.com/docs/legal-notices/license-terms-and-conditions/
 
 The setup-apama action is:
 
-	Copyright (C) 2020 Software AG, Darmstadt, Germany and/or its licensors
+	Copyright (C) 2020-present Cumulocity GmbH
 
 	Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 	Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
