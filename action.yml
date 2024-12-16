@@ -1,4 +1,4 @@
-# Copyright (C) 2020 Software AG, Darmstadt, Germany and/or its licensors
+# Copyright (C) 2020-present Cumulocity GmbH
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 #		http://www.apache.org/licenses/LICENSE-2.0
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
@@ -6,11 +6,11 @@
 # Use of this action implies agreement to the terms for using Apama Community Edition - http://www.apamacommunity.com/terms-conditions/
 
 name: 'Setup Apama'
-description: 'Install Software AG Apama Community Edition and add it to your GitHub Actions environment'
-author: Software AG
+description: 'Install Apama Community Edition and add it to your GitHub Actions environment'
+author: Apama
 inputs:
   apama-version:
-    description: 'The 4 digit version to install from https://downloads.apamacommunity.com/apama, e.g. 10.5.3.2'
+    description: 'The 4 digit version to install from https://download.cumulocity.com/Apama, e.g. 10.5.3.2'
     required: true
 
 runs:
@@ -20,7 +20,7 @@ runs:
         shell: bash
         run: |
           echo Use of this action implies agreement to the terms for using Apama Community Edition
-          echo See: http://www.apamacommunity.com/terms-conditions/
+          echo See: https://cumulocity.com/docs/legal-notices/license-terms-and-conditions/
           echo
           
           APAMA_CACHE_TAR=~/cached-apama-installation.tar
